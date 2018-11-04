@@ -1,0 +1,11 @@
+def cut_rod(p, n):
+    if n==0:
+        return 0
+    q = float('-inf')
+    for i in range(n):
+        q = max(q, p[i] + cut_rod(p, n-1-i))
+    return q
+
+p = [1,5,8,9,10,17,17,20,24,30]
+print(timeit.repeat("cut_rod(p, 4)", "from __main__ import cut_rod, p",
+              number =1000))
